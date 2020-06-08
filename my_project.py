@@ -32,7 +32,7 @@ def name_city():
 
 def load_data(city):
     '''
-    This function loads city data specified by the user
+    This __function__ loads city data **specified** by the user
     to be anlyzed
     '''
     df = pd.read_csv(CITY_DATA[city])

@@ -7,11 +7,13 @@ CITY_DATA = {
     'new york city':'new_york_city.csv',
     'washington':'washington.csv'}
 
-print('\nHi, my name is Olanrewaju Olaogun. It seems you want to explore the bikeshare data.')
+
+print('\n#Hi, my name is Olanrewaju. It seems you want to explore the bikeshare data.')
+
 def name_city():
     '''
-    This function gets the name of the city
-    to be anlyzed
+    **This function gets the name of the city**
+    **to be anlyzed from the user**
     '''
     print('\n\nI only have data for these three cities: Chicago or c, New York or n, and Washington or w\n\n')
     city = input('Please enter the city you would like to analyze the data for\n   :').title()
@@ -32,7 +34,7 @@ def name_city():
 
 def load_data(city):
     '''
-    This function loads city data specified by the user
+    This __function__ loads city data **specified** by the user
     to be anlyzed
     '''
     df = pd.read_csv(CITY_DATA[city])

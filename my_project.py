@@ -7,7 +7,7 @@ CITY_DATA = {
     'new york city':'new_york_city.csv',
     'washington':'washington.csv'}
 
-print('\nHi, my name is Olanrewaju. It seems you want to explore the bikeshare data.')
+print('\nHi, my name is Olanrewaju Olaogun. It seems you want to explore the bikeshare data.')
 def name_city():
     '''
     This function gets the name of the city
@@ -29,7 +29,7 @@ def name_city():
             else:
                 return name_city()
     return city
-    
+
 def load_data(city):
     '''
     This function loads city data specified by the user
@@ -50,13 +50,13 @@ def get_time():
     '''
     print('Type month(m), day(d) or none(n)')
     period = input('\nDo you want to filter the data by month(m) or by day(d) of the week or no filter(n)?\n  :').lower()
-    
-    
-    while True: 
+
+
+    while True:
         if period == "month" or period == "m":
             print('\n The data is now being filtered by month\n')
             return 'month'
-                
+
         elif period == "day" or period == "d":
             print('\n The data is now being filtered by the day of the week...\n')
             return 'day_of_week'
@@ -76,7 +76,7 @@ def get_month(m):      # get user input for month (january, february, march, apr
         return 'none'
 
 
-def get_day(d):      
+def get_day(d):
     if d == 'day_of_week':
         day = input('\nWhich day? Please type a day M, Tu, W, Th, F, Sa, Su. \n    :').lower().strip()
         while day not in ['m', 'tu', 'w', 'th', 'f', 'sa', 'su']:
@@ -88,7 +88,7 @@ def get_day(d):
 
 
 def time_filters(df, time, month, week_day):
-  
+
     print('\nCalculating the statisctics from the data loaded. \n')
     #Filtering done by Month
     if time == 'month':
@@ -109,7 +109,7 @@ def time_filters(df, time, month, week_day):
 
 
 def month_freq(df):
-   
+
     print('\n * Q1. What is the most popular month for bike traveling?\n:  ')
     m = df.month.mode()[0]
     months = ['january', 'february', 'march', 'april', 'may', 'june']
@@ -118,7 +118,7 @@ def month_freq(df):
 
 def day_freq(df):
     #What is the most popular day of week for start time?
-   
+
     print('\n * Q2. What is the most popular day of the week for bike rides?\n  :')
     return df['day_of_week'].value_counts().reset_index()['index'][0]
 
@@ -185,7 +185,7 @@ def gender_data(df):
         return df['Gender'].value_counts()
     except:
         print('There is no gender data in the source.')
-    
+
 def birth_years(df):
     '''What is the earliest, latest, and most frequent birth year?'''
     # df - dataframe returned from time_filters
@@ -211,7 +211,7 @@ def process(f, df):
 
 def raw_data_view(df):
     '''
-    Displays the raw data used to compute 
+    Displays the raw data used to compute
     the statistics for bikeshare data
     '''
     #drop month column from the dataframe
@@ -228,8 +228,8 @@ def raw_data_view(df):
         view_data = input("\n Would you like to see more rows of the raw data used to compute the statisticss?\n  :  ").lower()
 
 def main():
-    '''The main function calculates and prints out the 
-    descriptive statistics about a requested city by 
+    '''The main function calculates and prints out the
+    descriptive statistics about a requested city by
     calling all the functions written above
     '''
     city = name_city()
@@ -239,13 +239,13 @@ def main():
     day = get_day(period)
 
     df = time_filters(df, period, month, day)
-    
+
     # List of all the statistics
     stats_funcs_list = [month_freq,
-     day_freq, hour_freq, 
-     ride_duration, common_trip, 
+     day_freq, hour_freq,
+     ride_duration, common_trip,
      stations_freq, bike_users, gender_data, birth_years]
-	
+
     for x in stats_funcs_list:	# displays processing time for each function block
         process(x, df)
     raw_data_view(df)
